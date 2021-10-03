@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_empty_world.launch">
+        <arg name="world" value="$(find turtlebot_demo)/worlds/single_pillar.world"/>
+    </include>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+    <node name="turtlebot_controller" pkg="turtlebot_demo" type="turtlebot_demo" output="screen">
+        <rosparam file="$(find turtlebot_demo)/config/config.yaml" command="load"/>
+    </node>
+     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot_demo)/rviz/waffle.rviz" required="true" /> 
+</launch>

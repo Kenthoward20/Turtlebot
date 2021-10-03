@@ -1,0 +1,6 @@
+scan_subscriber_topic_name: /scan
+scan_subscriber_queue_size: 10
+kp: 4
+ki: 0.2
+kd: 6
+x_vel: 1
