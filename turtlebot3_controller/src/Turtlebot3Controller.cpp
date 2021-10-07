@@ -1,10 +1,10 @@
 #include <cmath>
 #include <algorithm>
-#include <turtlebot_demo/turtlebotController.hpp>
+#include <turtlebot3_controller/turtlebot3Controller.hpp>
 
-namespace turtlebot_controller {
+namespace turtlebot3_controller {
 
-TurtlebotController::TurtlebotController(ros::NodeHandle &nodeHandle) :
+Turtlebot3Controller::Turtlebot3Controller(ros::NodeHandle &nodeHandle) :
 		nodeHandle_(nodeHandle), subscriberQueueSize_(10), 
 		scanTopic_("/scan"), xVel_(0.5), kpAng_(20) , kiAng_(20), kdAng_(20){
 	if (!readParameters()) {
@@ -12,15 +12,15 @@ TurtlebotController::TurtlebotController(ros::NodeHandle &nodeHandle) :
 		ros::requestShutdown();
 	}
 	scanSubscriber_ = nodeHandle_.subscribe(scanTopic_, subscriberQueueSize_,
-			&TurtlebotController::scanCallback, this);
+			&Turtlebot3Controller::scanCallback, this);
 
     velPublisher_ = nodeHandle_.advertise<geometry_msgs::Twist>("/cmd_vel", 0);
 }
 
-TurtlebotController::~TurtlebotController() {
+Turtlebot3Controller::~Turtlebot3Controller() {
 }
 
-bool TurtlebotController::readParameters() {
+bool Turtlebot3Controller::readParameters() {
 	bool success = true;
 	success &= nodeHandle_.getParam(
 			"/turtlebot_controller/scan_subscriber_topic_name", scanTopic_);
@@ -39,7 +39,7 @@ bool TurtlebotController::readParameters() {
 }
 
 
-void TurtlebotController::scanCallback(
+void Turtlebot3Controller::scanCallback(
 		const sensor_msgs::LaserScan::ConstPtr &msg) {
 	/* The code below uses C++ 11. The equivalent code using C++ 98 which is more non C++ user friendly is commented out
     */
@@ -76,7 +76,7 @@ void TurtlebotController::scanCallback(
     }
 
 
-void TurtlebotController::publishVelocity(float angle, float distance){
+void Turtlebot3Controller::publishVelocity(float angle, float distance){
 	velMsg_.linear.x = xVel_;
 	velMsg_.angular.z = kpAng_*angle + kiAng_*sumErrorAngle_ + kdAng_*(angle - prevAngle_); 
 	velPublisher_.publish(velMsg_);

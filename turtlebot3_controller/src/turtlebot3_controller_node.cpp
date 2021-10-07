@@ -1,11 +1,11 @@
 #include <ros/ros.h>
-#include "turtlebot_demo/turtlebotController.hpp"
+#include "turtlebot3_controller/turtlebot3Controller.hpp"
 
 int main(int argc, char** argv) {
   ros::init(argc, argv, "turtlebot_controller");
   ros::NodeHandle nodeHandle("~");
 
-  turtlebot_controller::TurtlebotController turtlebotController(nodeHandle);
+  turtlebot3_controller::Turtlebot3Controller turtlebotController(nodeHandle);
 
   ros::spin();
   return 0;

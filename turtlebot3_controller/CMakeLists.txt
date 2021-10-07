@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(turtlebot_demo)
+project(turtlebot3_controller)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -32,8 +32,8 @@ include_directories(
 )
 
 add_executable(${PROJECT_NAME}
-  src/turtlebot_controller_node.cpp
-  src/TurtlebotController.cpp
+  src/turtlebot3_controller_node.cpp
+  src/Turtlebot3Controller.cpp
 )
 
 # Specify libraries to link a library or executable target against

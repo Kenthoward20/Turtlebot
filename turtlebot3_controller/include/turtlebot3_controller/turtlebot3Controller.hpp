@@ -6,18 +6,18 @@
 #include <string.h>
 #include <time.h>
 
-namespace turtlebot_controller {
+namespace turtlebot3_controller {
 
 /**
  * Class containing the Turtlebot Controller
  */
-class TurtlebotController {
+class Turtlebot3Controller {
  public:
   /** Constructor */
-  TurtlebotController(ros::NodeHandle& nodeHandle);
+  Turtlebot3Controller(ros::NodeHandle& nodeHandle);
 
   /** Destructor */
-  virtual ~TurtlebotController();
+  virtual ~Turtlebot3Controller();
 
  private:
   bool readParameters();
