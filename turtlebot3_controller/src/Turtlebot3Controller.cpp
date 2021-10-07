@@ -6,7 +6,7 @@ namespace turtlebot3_controller {
 
 Turtlebot3Controller::Turtlebot3Controller(ros::NodeHandle &nodeHandle) :
 		nodeHandle_(nodeHandle), subscriberQueueSize_(10), 
-		scanTopic_("/scan"), xVel_(0.5), kpAng_(20) , kiAng_(20), kdAng_(20){
+		scanTopic_("/scan"), xVel_(0.5), kpAng_(1) , kiAng_(0), kdAng_(1){
 	if (!readParameters()) {
 		ROS_ERROR("Could not read parameters.");
 		ros::requestShutdown();
@@ -23,18 +23,7 @@ Turtlebot3Controller::~Turtlebot3Controller() {
 bool Turtlebot3Controller::readParameters() {
 	bool success = true;
 	success &= nodeHandle_.getParam(
-			"/turtlebot_controller/scan_subscriber_topic_name", scanTopic_);
-	success &= nodeHandle_.getParam(
-			"/turtlebot_controller/scan_subscriber_queue_size",
-			subscriberQueueSize_);
-    success &= nodeHandle_.getParam(
-			"/turtlebot_controller/x_vel", xVel_);
-	success &= nodeHandle_.getParam(
-			"/turtlebot_controller/kp", kpAng_);
-	success &= nodeHandle_.getParam(
-			"/turtlebot_controller/ki", kiAng_);
-	success &= nodeHandle_.getParam(
-			"/turtlebot_controller/kd", kdAng_);
+			"/turtlebot3_controller/scan_subscriber_topic_name", scanTopic_);
 	return success;
 }
 
