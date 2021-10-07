@@ -13,5 +13,5 @@ The package turtlebot3_controller contains a controller capable of detecting the
 To use the turtlebot3_controller package, run the following commands:
 ```sh
 export TURTLEBOT3_MODEL=waffle
-roslaunch turtlebot3_controller turtlebot_controller.launch
+roslaunch turtlebot3_controller turtlebot3_controller.launch
 ```
