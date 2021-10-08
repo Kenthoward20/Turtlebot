@@ -22,14 +22,14 @@ class Turtlebot3Controller {
  private:
   bool readParameters();
   void scanCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
-  void publishVelocity();
+  void publishVelocity(float angle);
 
   ros::NodeHandle nodeHandle_;
   ros::Subscriber scanSubscriber_;
   ros::Publisher velPublisher_;
   std::string scanTopic_;
   int subscriberQueueSize_;
-  float xVel_,kpAng_, kiAng_, kdAng_;
+  float xVel_,kpAng_, kiAng_, kdAng_, prevAngle_, sumErrorAngle_;
   geometry_msgs::Twist velMsg_;
 };
 

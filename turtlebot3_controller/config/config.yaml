@@ -2,5 +2,5 @@ scan_subscriber_topic_name: /scan
 scan_subscriber_queue_size: 10
 kp: 1
 ki: 0
-kd: 1
+kd: 0
 x_vel: 1
