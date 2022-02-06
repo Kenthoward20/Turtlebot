@@ -1,17 +1,13 @@
 <?xml version="1.0"?>
 <launch>
-      <!-- Arguments -->
+  <!-- Arguments -->
   <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
-  <arg name="map_file" default="$(find turtlebot3_navigation)/maps/map.yaml"/>
+  <arg name="map_file" default="$(find turtlebot3_controller)/maps/map.yaml"/>
   <arg name="open_rviz" default="true"/>
   <arg name="move_forward_only" default="false"/>
     
-    <include file="$(find turtlebot3_bringup)/launch/turtlebot3_single_pillar.launch"/>
-
-    <!--<node name="turtlebot3_controller" pkg="turtlebot3_controller" type="turtlebot3_controller" output="screen">
-        <rosparam file="$(find turtlebot3_controller)/config/config.yaml" command="load"/>
-    </node>-->
-
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_gazebo_world.launch"/>
+  
   <!-- Map server -->
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
 
@@ -21,6 +17,7 @@
     <arg name="initial_pose_y" value="0.5"/>
     <arg name="initial_pose_a" value="1.57079632679"/>
   </include>
+
   <!-- move_base -->
   <include file="$(find turtlebot3_navigation)/launch/move_base.launch">
     <arg name="model" value="$(arg model)" />
@@ -32,6 +29,5 @@
     <node pkg="rviz" type="rviz" name="rviz" required="true"
           args="-d $(find turtlebot3_navigation)/rviz/turtlebot3_navigation.rviz"/>
   </group>
-
-    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot3_controller)/rviz/waffle.rviz" required="true" />  -->
+  
 </launch>
