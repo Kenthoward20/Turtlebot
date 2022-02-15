@@ -5,6 +5,24 @@ This package is made for **MLDA Robotics ROS Workshop 4 - Localization and Navig
 This workshop uses a Gazebo simulation of the [TurtleBot3](https://www.turtlebot.com/) robot to see how we can make use of ROS [`gmapping`](https://wiki.ros.org/gmapping) to generate a map of the robot's surrounding, and ROS [2D navigation stack](https://wiki.ros.org/navigation) to allow the robot to automatically navigate in its environment.
 
 # Usage
+## Preparation
+This package has been tested to run on **ROS Melodic and Noetic** on Ubuntu. You need to install several required ROS packages:
+```bash
+sudo apt install ros-$ROS_DISTRO-map-server ros-$ROS_DISTRO-teleop-twist-keyboard ros-$ROS_DISTRO-gmapping ros-$ROS_DISTRO-amcl ros-$ROS_DISTRO-move-base ros-$ROS_DISTRO-dwa-local-planner -y
+```
+
+Clone this repository inside your Catkin workspace:
+```bash
+cd ~/catkin_ws/src  # Change 'catkin_ws' if required
+git clone -b nav-workshop https://github.com/Kenthoward20/Turtlebot.git
+```
+
+And build the workspace:
+```bash
+cd ~/catkin_ws  # Change 'catkin_ws' if required
+catkin_make
+```
+
 ## Basic Usage
 Before running the examples, you need to source your Catkin workspace and specify which model of TurtleBot3 to be used (we will use `waffle` for this workshop). To automatically do those everytime a terminal is opened, you may run these in the terminal (once is enough):
 ```bash
